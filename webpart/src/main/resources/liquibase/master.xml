@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+	<changeSet id="create base" author="dima">
+		<createTable tableName="groups">
+			<column name="id" autoIncrement="true" type="int">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="name" type="varchar(32)" />
+		</createTable>
+		<createTable tableName="students">
+			<column name="id" type="int" autoIncrement="true">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="firstName" type="varchar(32)" />
+			<column name="lastName" type="varchar(32)" />
+			<column name="patronymic" type="varchar(32)" />
+			<column name="group_id" type="int">
+				<constraints foreignKeyName="groupref" references="groups(id)" />
+			</column>
+			<column name="course" type="int" />
+			<column name="mark" type="int" />
+		</createTable>
+	</changeSet>
+	<changeSet id="add data" author="dima">
+		<insert tableName="groups">
+			<column name="id" value="0" />
+			<column name="name" value="ИБ-081" />
+		</insert>
+		<insert tableName="groups">
+			<column name="id" value="1" />
+			<column name="name" value="КБ-081" />
+		</insert>
+		<insert tableName="groups">
+			<column name="id" value="2" />
+			<column name="name" value="БТ-081" />
+		</insert>
+
+		<insert tableName="students">
+			<column name="firstName" value="Дмитрий" />
+			<column name="lastName" value="Гусев" />
+			<column name="patronymic" value="Владимирович" />
+			<column name="group_id" value="0" />
+			<column name="course" value="5" />
+			<column name="mark" value="5" />
+		</insert>
+		<insert tableName="students">
+			<column name="firstName" value="Артём" />
+			<column name="lastName" value="Авдеев" />
+			<column name="patronymic" value="Александрович" />
+			<column name="group_id" value="0" />
+			<column name="course" value="5" />
+			<column name="mark" value="5" />
+		</insert>
+		<insert tableName="students">
+			<column name="firstName" value="Александр" />
+			<column name="lastName" value="Александров" />
+			<column name="patronymic" value="Александрович" />
+			<column name="group_id" value="1" />
+			<column name="course" value="5" />
+			<column name="mark" value="3" />
+		</insert>
+		<insert tableName="students">
+			<column name="firstName" value="Дмитрий" />
+			<column name="lastName" value="Бочаров" />
+			<column name="patronymic" value="Николаевич" />
+			<column name="group_id" value="1" />
+			<column name="course" value="5" />
+			<column name="mark" value="3" />
+		</insert>
+		<insert tableName="students">
+			<column name="firstName" value="Вадим" />
+			<column name="lastName" value="Дорожкин" />
+			<column name="patronymic" value="Сергеевич" />
+			<column name="group_id" value="2" />
+			<column name="course" value="5" />
+			<column name="mark" value="4" />
+		</insert>
+		<insert tableName="students">
+			<column name="firstName" value="Никита" />
+			<column name="lastName" value="Джигурда" />
+			<column name="patronymic" value="Борисович" />
+			<column name="group_id" value="2" />
+			<column name="course" value="5" />
+			<column name="mark" value="10" />
+		</insert>
+		<insert tableName="students">
+			<column name="firstName" value="Сергей" />
+			<column name="lastName" value="Попов" />
+			<column name="patronymic" value="Сергеевич" />
+			<column name="group_id" value="2" />
+			<column name="course" value="5" />
+			<column name="mark" value="3" />
+		</insert>
+	</changeSet>
+	<changeSet id="add spring securoty" author="dima">
+		<createTable tableName="users">
+			<column name="id" type="int" >
+			<constraints primaryKey="true"/>
+			</column>
+			<column name="login" type="varchar(32)" />
+			<column name="password" type="varchar(64)" />
+			<column name="userrole" type="varchar(16)" />
+		</createTable>
+		<insert tableName="users">
+			<column name="id" value="0" />
+			<column name="login" value="user" />
+			<column name="password" value="user" />
+			<column name="userrole" value="ROLE_USER" />
+		</insert>
+		<insert tableName="users">
+			<column name="id" value="1" />
+			<column name="login" value="admin" />
+			<column name="password" value="admin" />
+			<column name="userrole" value="ROLE_ADMIN" />
+		</insert>
+	</changeSet>
+</databaseChangeLog>
