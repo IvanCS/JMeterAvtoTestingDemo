@@ -4,10 +4,16 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui">
     <h:form id="#{authorisationBean.RELATIVE_VIEW_NAME}">
-        <p:outputLabel value="Login"/>
-        <p:inputText />  
-        <p:outputLabel/>
-        <p:inputText/>
+        <p:panel header="Authorization" >  
+            <p:panelGrid columns="1">              
+                <p:inputText title="Login" />  
+                <p:inputText title="Password"/>
+                <p:button title="SignIn" value="SignIn"/>
+            </p:panelGrid>
+          
+        </p:panel>
+        
+        
         
     </h:form>
     
