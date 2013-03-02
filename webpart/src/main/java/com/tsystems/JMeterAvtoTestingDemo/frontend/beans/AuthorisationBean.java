@@ -6,13 +6,17 @@ package com.tsystems.JMeterAvtoTestingDemo.frontend.beans;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author ipetrush
  */
+@Component
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class AuthorisationBean {
 
     public final String RELATIVE_VIEW_NAME = "authorisationForm";
