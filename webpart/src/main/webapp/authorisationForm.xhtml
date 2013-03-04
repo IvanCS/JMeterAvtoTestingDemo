@@ -4,11 +4,17 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui">
     <h:form id="#{authorisationBean.RELATIVE_VIEW_NAME}">
-        <p:panel header="Authorization" >  
+        <p:panel id="panelAuthorization" header="Authorization" >  
+            <p:messages showDetail="true" autoUpdate="true"/>  
+            
             <p:panelGrid columns="1">              
-                <p:inputText title="Login" />  
-                <p:inputText title="Password"/>
-                <p:button title="SignIn" value="SignIn"/>
+                <p:inputText id="login" />  
+                <p:watermark for="login" value="Login" />
+                
+                <p:password id="password" />
+                <p:watermark for="password" value="Enter your password" />
+                
+                <p:commandButton title="SignIn" value="SignIn" update="panelAuthorization" actionListener="#{authorisationBean.tryAuthorize()}"/>
             </p:panelGrid>
           
         </p:panel>

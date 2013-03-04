@@ -4,9 +4,11 @@
  */
 package com.tsystems.JMeterAvtoTestingDemo.frontend.beans;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -30,7 +32,18 @@ public class AuthorisationBean {
         return RELATIVE_VIEW_NAME;
     }
 
-    
+    public void tryAuthorize(){
+        FacesContext context = FacesContext.getCurrentInstance();
+        try {
+           // context.getExternalContext().redirect("startPagase.xhtml");
+            throw new Exception();
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Authorization error", "Invalid data");
+            context.addMessage(null, msg);
+        }
+    }
     
     
     
