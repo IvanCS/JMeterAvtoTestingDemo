@@ -12,9 +12,6 @@
     <url>http://maven.apache.org</url>
     <dependencies>
       
-        
-        
-      
         <!-- Spring framework -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -83,7 +80,21 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
-			
+
+            <plugin>
+                <groupId>com.lazerycode.jmeter</groupId>
+                <artifactId>jmeter-maven-plugin</artifactId>
+                <version>1.7.0</version>
+                <executions>
+                    <execution>
+                        <id>jmeter-tests</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jmeter</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>	
         </plugins>
     </build>
     
@@ -95,8 +106,16 @@
               
         </repository>
         
+        <repository>  
+            <id>jmeter-repo</id>
+            <url>http://repo1.maven.org/maven2/org/apache/jmeter/</url>         
+        </repository>
+        
+       
+        
     </repositories>
     <properties>
         <netbeans.hint.deploy.server>gfv3ee6</netbeans.hint.deploy.server>
+        <netbeans.hint.j2eeVersion>1.6</netbeans.hint.j2eeVersion>
     </properties>
 </project>
