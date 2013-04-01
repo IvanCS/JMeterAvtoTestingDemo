@@ -6,19 +6,17 @@ package com.tsystems.JMeterAvtoTestingDemo.frontend.beans;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /**
  *
  * @author ipetrush
  */
-@Component
 @ManagedBean
-@SessionScoped
+@ViewScoped
+@Component
 public class AuthorisationBean {
 
     public final String RELATIVE_VIEW_NAME = "authorisationForm";
@@ -35,7 +33,7 @@ public class AuthorisationBean {
     public void tryAuthorize(){
         FacesContext context = FacesContext.getCurrentInstance();
         try {
-           // context.getExternalContext().redirect("startPagase.xhtml");
+            //context.getExternalContext().redirect("startPagase.xhtml");
             throw new Exception();
         } catch (Exception e) {
             e.printStackTrace();
