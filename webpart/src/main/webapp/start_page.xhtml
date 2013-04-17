@@ -1,8 +1,22 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="./templates/page_layout.xhtml">
+<?xml version="1.0" encoding="UTF-8"?>
 
-    
-
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="templates/page_layout.xhtml">
+	<ui:define name="content">
+			<p:dataTable id="usersTable" var="user" value="#{userBean.users}">
+				<p:column id="user_id" headerText="ID" sortBy="#{user.id}">
+					<h:outputText value="#{user.id}" />
+				</p:column>
+				<p:column id="user_login" headerText="Login">
+					<h:outputText value="#{user.login}" />
+				</p:column>
+				<p:column id="user_password" headerText="Password">
+					<h:outputText value="#{user.password}" />
+				</p:column>
+			</p:dataTable>
+	</ui:define>
 </ui:composition>
