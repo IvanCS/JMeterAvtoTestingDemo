@@ -5,41 +5,35 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
 
-import com.tsystems.jmeteravtotestingdemo.ejbs.interfaces.IUserService;
-import com.tsystems.jmeteravtotestingdemo.entityes.User;
+import com.tsystems.jmeteravtotestingdemo.backend.ejbs.entities.SysUserEntity;
+import com.tsystems.jmeteravtotestingdemo.backend.ejbs.interfaces.IGenegicDAO;
+import com.tsystems.jmeteravtotestingdemo.backend.ejbs.interfaces.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 @ManagedBean
 @RequestScoped
+@Component
 public class UserBean {
 	
-	@EJB
-	private IUserService userService;
-	
-	public IUserService getUserService() {
-		return userService;
-	}
+	@Autowired
+	private IGenegicDAO userService;
 
-	public void setUserService(IUserService userService) {
-		this.userService = userService;
-	}
+    List<SysUserEntity> entities;
 
-	private List<User> users;
+    public IGenegicDAO getUserService() {
+        return userService;
+    }
 
-	public List<User> getUsers() {
-		if (users==null)
-		{
-			users = userService.getUsers();
-		}
-		return users;
-	}
+    public void setUserService(IGenegicDAO userService) {
+        this.userService = userService;
+    }
 
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
+    List<SysUserEntity>getAllSysUsers(){
+         return getUserService().getAll();
+     }
+
 
 }
