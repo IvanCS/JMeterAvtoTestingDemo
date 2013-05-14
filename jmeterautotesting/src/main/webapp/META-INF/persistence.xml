@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="persistenceUnit">
+        <class>com.tsystems.JMeterAvtoTestingDemo.backend.ejbs.entities.DepartmentEntity</class>
+        <class>com.tsystems.JMeterAvtoTestingDemo.backend.ejbs.entities.EmployeeEntity</class>
+        <class>com.tsystems.JMeterAvtoTestingDemo.backend.ejbs.entities.SysUserEntity</class>
+        <class>com.tsystems.JMeterAvtoTestingDemo.backend.ejbs.entities.RoleEntity</class>
+        <properties>
+            <property name="hibernate.connection.url" value="jdbc:hsqldb:hsql://localhost/employeesDB"/>
+            <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbc.JDBCDriver"/>
+            <property name="hibernate.connection.username" value="sa"/>
+            <property name="hibernate.connection.password" value=""/>
+        </properties>
+    </persistence-unit>
+</persistence>
