@@ -81,7 +81,7 @@ public class GenericDAO<T, ID extends Serializable> implements IGenegicDAO {
     @Override
     @Transactional
     public List<T> getAll() {
-
-        return getSession().createCriteria(getEntityClass()).list();
+        List<T> l =   getSession().createCriteria(getEntityClass()).list();
+        return   l;
     }
 }

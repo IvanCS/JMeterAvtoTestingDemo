@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="../templates/page_layout.xhtml"
+                 xmlns:p="http://primefaces.org/ui"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:define name="north">
+        <h:form>
+            <p:toolbar>
+                <p:toolbarGroup align="left">
+                    <h:outputLabel value="T - SYSTEMS CIS | JMeter autotesting DEMO" style=" font-size: 40px; margin-left: 100px"/>
+
+                    <h:outputLink   style=" font-size: 30px; margin-left: 300px">
+                        <h:outputText value="#{authorisationMB.login}" />
+                    </h:outputLink>
+
+                </p:toolbarGroup>
+
+                <p:toolbarGroup align="right"  style="  font-size: 20px; margin-right:  100px">
+                    <h:commandButton value ="Logout"  />
+                    <p:spacer width="20"/>
+                    <p:commandButton value ="Create User" onclick="dlgCreateUser.show()" />
+                </p:toolbarGroup>
+            </p:toolbar>
+
+        </h:form>
+    </ui:define>
+
+
+     <ui:define name="center">
+         <h:form prependId="false">
+
+             <p:dataTable id="dataTable" var="sys_user" value="#{userMB.entities}">
+
+                 <p:column headerText="id" footerText="1960-2010">
+                     <h:outputText value="#{sys_user.id}" />
+                 </p:column>
+
+                 <p:column headerText="login">
+                     <h:outputText value="#{sys_user.login}" />
+                 </p:column>
+
+                 <p:column headerText="password">
+                     <h:outputText value="#{sys_user.password}" />
+                 </p:column>
+
+
+             </p:dataTable>
+
+         </h:form>
+
+     </ui:define>
+
+</ui:composition>
+

@@ -2,7 +2,26 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="./templates/page_layout.xhtml">
+                template="./jsf/templates/page_layout.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html">
+
+     <ui:define name="north">
+         <h:form>
+             <p:toolbar>
+                 <p:toolbarGroup align="left">
+                     <h:outputLabel value="T - SYSTEMS CIS | JMeter autotesting DEMO" style=" font-size: 40px; margin-left: 100px"/>
+                 </p:toolbarGroup>
+                 <p:toolbarGroup align="right"  style="  font-size: 20px; margin-right:  100px">
+                     <p:commandButton value ="Sign in" onclick="dlgSignIn.show()"/>
+                     <p:spacer width="20"/>
+
+                 </p:toolbarGroup>
+             </p:toolbar>
+         </h:form>
+
+     </ui:define>
+
 
 
 </ui:composition>
