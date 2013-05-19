@@ -4,22 +4,23 @@ import javax.persistence.*;
 
 /**
  * Created with IntelliJ IDEA.
- * User: ipetrush
- * Date: 13.05.13
- * Time: 14:02
+ * User: Ivan
+ * Date: 5/19/13
+ * Time: 8:26 PM
  * To change this template use File | Settings | File Templates.
  */
-@Table(name = "EMPLOYEE", schema = "PUBLIC", catalog = "PUBLIC")
+@javax.persistence.Table(name = "EMPLOYEE", schema = "PUBLIC", catalog = "PUBLIC")
 @Entity
 public class EmployeeEntity {
     private int id;
     private String firstname;
     private String lastname;
     private String position;
-    private Integer department;
+    private DepartmentEntity departmentByDepartment;
 
-    @Column(name = "ID")
+    @javax.persistence.Column(name = "ID")
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
         return id;
     }
@@ -28,7 +29,7 @@ public class EmployeeEntity {
         this.id = id;
     }
 
-    @Column(name = "FIRSTNAME")
+    @javax.persistence.Column(name = "FIRSTNAME")
     @Basic
     public String getFirstname() {
         return firstname;
@@ -38,7 +39,7 @@ public class EmployeeEntity {
         this.firstname = firstname;
     }
 
-    @Column(name = "LASTNAME")
+    @javax.persistence.Column(name = "LASTNAME")
     @Basic
     public String getLastname() {
         return lastname;
@@ -48,7 +49,7 @@ public class EmployeeEntity {
         this.lastname = lastname;
     }
 
-    @Column(name = "POSITION")
+    @javax.persistence.Column(name = "POSITION")
     @Basic
     public String getPosition() {
         return position;
@@ -82,13 +83,13 @@ public class EmployeeEntity {
         return result;
     }
 
-    @Column(name = "DEPARTMENT")
-    @Basic
-    public Integer getDepartment() {
-        return department;
+    @ManyToOne
+    @javax.persistence.JoinColumn(name = "DEPARTMENT", referencedColumnName = "ID")
+    public DepartmentEntity getDepartmentByDepartment() {
+        return departmentByDepartment;
     }
 
-    public void setDepartment(Integer department) {
-        this.department = department;
+    public void setDepartmentByDepartment(DepartmentEntity departmentByDepartment) {
+        this.departmentByDepartment = departmentByDepartment;
     }
 }

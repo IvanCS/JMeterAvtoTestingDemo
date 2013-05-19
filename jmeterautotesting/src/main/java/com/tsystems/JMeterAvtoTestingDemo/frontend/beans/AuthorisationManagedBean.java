@@ -6,11 +6,9 @@ package com.tsystems.JMeterAvtoTestingDemo.frontend.beans;
 
 import com.tsystems.JMeterAvtoTestingDemo.backend.ejbs.interfaces.IUserService;
 
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
@@ -24,7 +22,6 @@ public class AuthorisationManagedBean implements Serializable {
 
 
     public final String RELATIVE_VIEW_NAME = "authorisationForm";
-
     @ManagedProperty(value = "#{userService}")
     private IUserService userService;
     private String login;
@@ -47,11 +44,12 @@ public class AuthorisationManagedBean implements Serializable {
         try {
             boolean isSigned = false;
             isSigned = getUserService().checkCredentials(getLogin(), getPassword());
-            if(isSigned){
+            if (isSigned) {
                 context.getExternalContext().redirect("/jsf/pages/main_page.jsf");
-            }  else{
-                throw new Exception("Authorization is failed!") ;
+            } else {
+                throw new Exception("Authorization is failed!");
             }
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -60,6 +58,17 @@ public class AuthorisationManagedBean implements Serializable {
             context.addMessage(null, msg);
 
         }
+
+    }
+
+    public void logout(){
+        try{
+            setLogin(null);
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/start_page.jsf");
+        }        catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     public IUserService getUserService() {
@@ -71,11 +80,29 @@ public class AuthorisationManagedBean implements Serializable {
     }
 
     public String getLogin() {
+        String user_login = null;
+        try {
+            user_login = FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user_login").toString();
+
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        if (user_login != null) {
+            login = user_login;
+        }
+
         return login;
     }
 
+
+
     public void setLogin(String login) {
         this.login = login;
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user_login", login);
+        } catch (Exception e) {
+            e.getMessage();
+        }
     }
 
     public String getPassword() {

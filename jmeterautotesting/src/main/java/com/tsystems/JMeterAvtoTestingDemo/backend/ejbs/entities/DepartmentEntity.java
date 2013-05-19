@@ -1,22 +1,25 @@
 package com.tsystems.JMeterAvtoTestingDemo.backend.ejbs.entities;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * Created with IntelliJ IDEA.
- * User: ipetrush
- * Date: 13.05.13
- * Time: 14:02
+ * User: Ivan
+ * Date: 5/19/13
+ * Time: 8:26 PM
  * To change this template use File | Settings | File Templates.
  */
-@Table(name = "DEPARTMENT", schema = "PUBLIC", catalog = "PUBLIC")
+@javax.persistence.Table(name = "DEPARTMENT", schema = "PUBLIC", catalog = "PUBLIC")
 @Entity
 public class DepartmentEntity {
     private int id;
     private String name;
+    private Collection<EmployeeEntity> employeesById;
 
-    @Column(name = "ID")
+    @javax.persistence.Column(name = "ID")
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
         return id;
     }
@@ -25,7 +28,7 @@ public class DepartmentEntity {
         this.id = id;
     }
 
-    @Column(name = "NAME")
+    @javax.persistence.Column(name = "NAME")
     @Basic
     public String getName() {
         return name;
@@ -53,5 +56,14 @@ public class DepartmentEntity {
         int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "departmentByDepartment")
+    public Collection<EmployeeEntity> getEmployeesById() {
+        return employeesById;
+    }
+
+    public void setEmployeesById(Collection<EmployeeEntity> employeesById) {
+        this.employeesById = employeesById;
     }
 }

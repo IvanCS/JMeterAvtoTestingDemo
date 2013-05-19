@@ -13,7 +13,7 @@ version="2.0">
     </application>
 
 
-
+     <!--
    <navigation-rule>
        <from-view-id>/start_page.xhtml</from-view-id>
        <navigation-case>
@@ -23,6 +23,6 @@ version="2.0">
            <redirect/>
        </navigation-case>
    </navigation-rule>
-
+        -->
 
 </faces-config>

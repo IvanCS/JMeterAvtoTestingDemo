@@ -1,22 +1,25 @@
 package com.tsystems.JMeterAvtoTestingDemo.backend.ejbs.entities;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * Created with IntelliJ IDEA.
- * User: ipetrush
- * Date: 13.05.13
- * Time: 14:02
+ * User: Ivan
+ * Date: 5/19/13
+ * Time: 8:26 PM
  * To change this template use File | Settings | File Templates.
  */
-@Table(name = "role", schema = "PUBLIC", catalog = "PUBLIC")
+@javax.persistence.Table(name = "role", schema = "PUBLIC", catalog = "PUBLIC")
 @Entity
 public class RoleEntity {
     private int id;
     private String name;
+    private Collection<SysUserEntity> sysUsersById;
 
-    @Column(name = "ID")
+    @javax.persistence.Column(name = "ID")
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
         return id;
     }
@@ -25,7 +28,7 @@ public class RoleEntity {
         this.id = id;
     }
 
-    @Column(name = "NAME")
+    @javax.persistence.Column(name = "NAME")
     @Basic
     public String getName() {
         return name;
@@ -53,5 +56,14 @@ public class RoleEntity {
         int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "roleByRoleId")
+    public Collection<SysUserEntity> getSysUsersById() {
+        return sysUsersById;
+    }
+
+    public void setSysUsersById(Collection<SysUserEntity> sysUsersById) {
+        this.sysUsersById = sysUsersById;
     }
 }

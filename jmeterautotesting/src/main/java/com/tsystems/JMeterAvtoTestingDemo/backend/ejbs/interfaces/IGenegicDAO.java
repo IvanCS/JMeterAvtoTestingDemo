@@ -17,6 +17,7 @@ public interface IGenegicDAO<T,ID extends Serializable> {
     Session getSession();
 
     boolean save(T t);
+    boolean persist(T o);
     boolean delete(T t);
     List<T> getAll();
     T find(ID id);

@@ -4,21 +4,22 @@ import javax.persistence.*;
 
 /**
  * Created with IntelliJ IDEA.
- * User: ipetrush
- * Date: 13.05.13
- * Time: 14:02
+ * User: Ivan
+ * Date: 5/19/13
+ * Time: 8:26 PM
  * To change this template use File | Settings | File Templates.
  */
-@Table(name = "SYS_USER", schema = "PUBLIC", catalog = "PUBLIC")
+@javax.persistence.Table(name = "SYS_USER", schema = "PUBLIC", catalog = "PUBLIC")
 @Entity
 public class SysUserEntity {
     private int id;
     private String login;
     private String password;
-    private Integer roleId;
+    private RoleEntity roleByRoleId;
 
-    @Column(name = "ID")
+    @javax.persistence.Column(name = "ID")
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
         return id;
     }
@@ -27,7 +28,7 @@ public class SysUserEntity {
         this.id = id;
     }
 
-    @Column(name = "LOGIN")
+    @javax.persistence.Column(name = "LOGIN")
     @Basic
     public String getLogin() {
         return login;
@@ -37,7 +38,7 @@ public class SysUserEntity {
         this.login = login;
     }
 
-    @Column(name = "PASSWORD")
+    @javax.persistence.Column(name = "PASSWORD")
     @Basic
     public String getPassword() {
         return password;
@@ -69,13 +70,13 @@ public class SysUserEntity {
         return result;
     }
 
-    @Column(name = "ROLE_ID")
-    @Basic
-    public Integer getRoleId() {
-        return roleId;
+    @ManyToOne
+    @javax.persistence.JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")
+    public RoleEntity getRoleByRoleId() {
+        return roleByRoleId;
     }
 
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
+    public void setRoleByRoleId(RoleEntity roleByRoleId) {
+        this.roleByRoleId = roleByRoleId;
     }
 }

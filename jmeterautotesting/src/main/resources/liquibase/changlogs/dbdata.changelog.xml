@@ -16,4 +16,23 @@
 		<column name="password" value="user"/>
 		</insert>
 	</changeSet>
+
+    <changeSet id="add deparmments" author="ivan">
+
+        <insert tableName="department" >
+            <column name="id" value="0"/>
+            <column name="name" value="Java"/>
+        </insert>
+
+        <insert tableName="department" >
+            <column name="id" value="1"/>
+            <column name="name" value="SAP"/>
+        </insert>
+
+        <insert tableName="department" >
+            <column name="id" value="2"/>
+            <column name="name" value="QA"/>
+
+        </insert>
+    </changeSet>
 </databaseChangeLog>

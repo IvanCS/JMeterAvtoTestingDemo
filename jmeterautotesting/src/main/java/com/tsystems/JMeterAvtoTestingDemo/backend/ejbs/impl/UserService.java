@@ -10,6 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository ("userService")
 public class UserService extends GenericDAO<SysUserEntity,Integer> implements IUserService {
 
+    public UserService() {
+        setEntityClass(SysUserEntity.class);
+    }
+
     @Override
     @Transactional
     public boolean checkCredentials(String login, String password) {

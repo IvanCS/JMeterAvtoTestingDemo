@@ -4,24 +4,43 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="./jsf/templates/page_layout.xhtml"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:h="http://java.sun.com/jsf/html">
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns="http://www.w3.org/1999/xhtml">
 
-     <ui:define name="north">
-         <h:form>
-             <p:toolbar>
-                 <p:toolbarGroup align="left">
-                     <h:outputLabel value="T - SYSTEMS CIS | JMeter autotesting DEMO" style=" font-size: 40px; margin-left: 100px"/>
-                 </p:toolbarGroup>
-                 <p:toolbarGroup align="right"  style="  font-size: 20px; margin-right:  100px">
-                     <p:commandButton value ="Sign in" onclick="dlgSignIn.show()"/>
-                     <p:spacer width="20"/>
 
-                 </p:toolbarGroup>
-             </p:toolbar>
-         </h:form>
 
-     </ui:define>
 
+    <ui:define name="center">
+
+
+        <h:form id="formAuthorization">
+
+
+
+
+            <div align="center" style="margin-left:12%; margin-right: 12%; margin-top:10px">
+
+                <p:panel header="Welcome" id="signInPanel">
+                    <p:messages id="messagesSignIn" showDetail="true" autoUpdate="true"/>
+                    <h:panelGrid columns="1">
+                        <p:inputText id="inLabel" value="#{authorisationMB.login}"/>
+                        <p:watermark for="inLabel" value="Enter your login"/>
+
+
+                        <p:password id="passPassword" value="#{authorisationMB.password}" feedback="false"/>
+                        <p:watermark for="passPassword" value="Enter your password"/>
+                    </h:panelGrid>
+
+                    <p:commandButton id="loginButton" value="Sign in"
+                                     actionListener="#{authorisationMB.tryAuthorize()}" update="messagesSignIn"/>
+
+                </p:panel>
+            </div>
+
+        </h:form>
+
+
+    </ui:define>
 
 
 </ui:composition>

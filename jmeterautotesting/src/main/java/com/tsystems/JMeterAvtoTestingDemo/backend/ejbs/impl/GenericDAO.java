@@ -61,6 +61,20 @@ public class GenericDAO<T, ID extends Serializable> implements IGenegicDAO {
 
     @Override
     @Transactional
+    public boolean persist(Object o) {
+        boolean isSaved = true;
+        try{
+
+            getSession().persist(o);
+        }  catch (Exception e){
+            isSaved = false;
+        }
+        return isSaved;
+
+    }
+
+    @Override
+    @Transactional
     public boolean delete(Object o) {
         boolean isDeleted = true;
         try{
@@ -81,6 +95,7 @@ public class GenericDAO<T, ID extends Serializable> implements IGenegicDAO {
     @Override
     @Transactional
     public List<T> getAll() {
+
         List<T> l =   getSession().createCriteria(getEntityClass()).list();
         return   l;
     }

@@ -3,56 +3,77 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="../templates/page_layout.xhtml"
-                 xmlns:p="http://primefaces.org/ui"
-        xmlns:h="http://java.sun.com/jsf/html"
-        xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
 
     <ui:define name="north">
-        <h:form>
-            <p:toolbar>
-                <p:toolbarGroup align="left">
-                    <h:outputLabel value="T - SYSTEMS CIS | JMeter autotesting DEMO" style=" font-size: 40px; margin-left: 100px"/>
+        <div align="center" style="margin: auto">
+            <h:form>
 
-                    <h:outputLink   style=" font-size: 30px; margin-left: 300px">
-                        <h:outputText value="#{authorisationMB.login}" />
-                    </h:outputLink>
+                <p:outputPanel>
+                    <p:graphicImage value="../../resources/images/header.png"/>
+                </p:outputPanel>
 
-                </p:toolbarGroup>
+            </h:form>
+        </div>
 
-                <p:toolbarGroup align="right"  style="  font-size: 20px; margin-right:  100px">
-                    <h:commandButton value ="Logout"  />
+        <div align="center" style="margin-left:12%; margin-right: 12%; margin-bottom: 2px">
+            <h:form id="toolbar">
+                <p:toolbar>
+
+
+                    <p:toolbarGroup align="right" style="margin-right:  20px">
+                        <p:commandButton value="#{authorisationMB.login} | Logout" action="#{authorisationMB.logout()}"/>
+                    </p:toolbarGroup>
+
                     <p:spacer width="20"/>
-                    <p:commandButton value ="Create User" onclick="dlgCreateUser.show()" />
-                </p:toolbarGroup>
-            </p:toolbar>
 
-        </h:form>
+                    <p:toolbarGroup align="left" style="margin-left:  20px">
+
+                        <p:commandButton value="Add new Employee" onclick="dlgCreateEmpl.show()"/>
+                    </p:toolbarGroup>
+                </p:toolbar>
+            </h:form>
+        </div>
     </ui:define>
 
 
-     <ui:define name="center">
-         <h:form prependId="false">
+    <ui:define name="center">
 
-             <p:dataTable id="dataTable" var="sys_user" value="#{userMB.entities}">
+        <div align="center" style="margin-left:12%; margin-right: 12%">
+            <h:form prependId="false">
 
-                 <p:column headerText="id" footerText="1960-2010">
-                     <h:outputText value="#{sys_user.id}" />
-                 </p:column>
+                <p:dataTable id="dataTable"  var="emploee" paginator="true" rows="5" value="#{employeeMB.employees}">
 
-                 <p:column headerText="login">
-                     <h:outputText value="#{sys_user.login}" />
-                 </p:column>
+                    <f:facet name="header">
+                       Employees
+                    </f:facet>
 
-                 <p:column headerText="password">
-                     <h:outputText value="#{sys_user.password}" />
-                 </p:column>
+                    <p:column headerText="id">
+                        <h:outputText value="#{emploee.id}"/>
+                    </p:column>
+
+                    <p:column headerText="lastname">
+                        <h:outputText value="#{emploee.lastname}"/>
+                    </p:column>
+
+                    <p:column headerText="position">
+                        <h:outputText value="#{emploee.position}"/>
+                    </p:column>
+
+                    <p:column headerText="department">
+                        <h:outputText value="#{emploee.departmentByDepartment.name}"/>
+                    </p:column>
+
+                </p:dataTable>
 
 
-             </p:dataTable>
-
-         </h:form>
-
-     </ui:define>
+            </h:form>
+        </div>
+    </ui:define>
 
 </ui:composition>
 

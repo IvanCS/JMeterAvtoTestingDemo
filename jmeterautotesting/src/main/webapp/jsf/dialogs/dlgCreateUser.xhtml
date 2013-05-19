@@ -5,15 +5,13 @@
               xmlns:p="http://primefaces.org/ui"
         >
 
-    <!--
-    <p:dialog id="modalDialogCreateUser" header="New User" widgetVar="dlgCreateUser" modal="true"
+
+    <p:dialog id="modalDialogCreateUser" header="New User" widgetVar="dlgCreateUser" modal="false"
               showEffect="clip" hideEffect="clip">
 
         <h:form id="formCreateUser">
 
             <p:panel header="Personal Details">
-
-                <h:messages errorClass="error"/>
 
                 <h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">
                     <h:outputText value="Firstname: *"/>
@@ -26,9 +24,10 @@
 
 
                 </h:panelGrid>
-               <p:commandButton value="create" action="#{userMB.createNewUser}"/>
+               <p:commandButton value="create" action="#{userMB.createNewUser()}" onclick="close()"  ajax="false"/>
             </p:panel>
         </h:form>
     </p:dialog>
-   -->
+
+
 </ui:component>

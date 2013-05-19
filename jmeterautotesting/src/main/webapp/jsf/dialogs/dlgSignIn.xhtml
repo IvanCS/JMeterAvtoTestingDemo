@@ -7,23 +7,8 @@
 
     <p:dialog id="modalDialogSignIn" header="Sign In" widgetVar="dlgSignIn" modal="true"
               showEffect="clip" hideEffect="clip">
-        <h:form id="formAuthorization" >
-
-            <p:messages id="messagesSignIn" showDetail="true" autoUpdate="true"  />
-
-            <h:panelGrid columns="1" id="signInGrid"  >
-
-                <p:inputText id="inLabel" value="#{authorisationMB.login}"/>
-                <p:watermark for="inLabel" value="Enter your login or e-mail" />
 
 
-                <p:password id="passPassword" value="#{authorisationMB.password}" feedback="false"/>
-                <p:watermark for="passPassword" value="Enter your password" />
-            </h:panelGrid>
-
-            <p:commandButton id="loginButton"  value="Sign in"  actionListener="#{authorisationMB.tryAuthorize()}" />
-
-        </h:form>
 
     </p:dialog>
 
