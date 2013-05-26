@@ -155,25 +155,77 @@
             </plugin>
 
 
-            <!--
+
 			<plugin>
 				<groupId>com.lazerycode.jmeter</groupId>
 				<artifactId>jmeter-maven-plugin</artifactId>
-				<version>1.7.0</version>
+				<version>1.8.1</version>
 				<configuration>
-					<ignoreResultFailures>true</ignoreResultFailures>
+                    <propertiesUser>
+                        <hostname>localhost</hostname>
+                        <port>9080</port>
+                    </propertiesUser>
+
+
 				</configuration>
 				<executions>
 					<execution>
 						<id>jmeter-tests</id>
-						<phase>verify</phase>
+						<phase>integration-test</phase>
 						<goals>
 							<goal>jmeter</goal>
 						</goals>
 					</execution>
 				</executions>
 			</plugin>
-			-->
+
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>maven-jetty-plugin</artifactId>
+                <version>6.1.12rc1</version>
+                <configuration>
+                    <webApp>
+                        ${basedir}/target/${project.name}-${project.version}.war
+                    </webApp>
+                    <contextPath>
+                        ${project.name}-${project.version}
+                    </contextPath>
+                    <connectors>
+                        <connector	implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+                            <port>9080</port>
+                            <maxIdleTime>60000</maxIdleTime>
+                        </connector>
+                    </connectors>
+                    <systemProperties>
+                        <systemProperty>
+                            <name>
+                                pmtool.application.environment
+                            </name>
+                            <value>dev</value>
+                        </systemProperty>
+                    </systemProperties>
+                    <stopPort>9966</stopPort>
+                    <stopKey>foo</stopKey>
+                    <daemon>true</daemon>
+                    <scanIntervalSeconds>0</scanIntervalSeconds>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>start-jetty</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>run-war</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>stop-jetty</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 		</plugins>
 	</build>
 

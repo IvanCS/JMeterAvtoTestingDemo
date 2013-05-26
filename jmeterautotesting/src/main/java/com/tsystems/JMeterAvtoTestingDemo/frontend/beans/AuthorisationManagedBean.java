@@ -45,7 +45,7 @@ public class AuthorisationManagedBean implements Serializable {
             boolean isSigned = false;
             isSigned = getUserService().checkCredentials(getLogin(), getPassword());
             if (isSigned) {
-                context.getExternalContext().redirect("/jsf/pages/main_page.jsf");
+                context.getExternalContext().redirect("/jmeteravtotestindemo-1.0.0/main_page.jsf");
             } else {
                 throw new Exception("Authorization is failed!");
             }
@@ -64,7 +64,8 @@ public class AuthorisationManagedBean implements Serializable {
     public void logout(){
         try{
             setLogin(null);
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/start_page.jsf");
+            FacesContext.getCurrentInstance().getExternalContext(). redirect("/start_page.jsf");
+
         }        catch (Exception e){
             e.printStackTrace();
         }
