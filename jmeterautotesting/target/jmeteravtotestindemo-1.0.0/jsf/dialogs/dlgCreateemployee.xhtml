@@ -1,0 +1,44 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:h="http://java.sun.com/jsf/html"
+              xmlns:ui="http://java.sun.com/jsf/facelets"
+              xmlns:f="http://java.sun.com/jsf/core"
+              xmlns:p="http://primefaces.org/ui"
+        >
+
+
+    <p:dialog id="modalDialogCreateEmpl" header="New Employee" widgetVar="dlgCreateEmpl" modal="false"
+              showEffect="clip" hideEffect="clip">
+
+        <h:form id="formCreateEmpl">
+
+            <p:panel header="Personal Details">
+
+                <h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">
+                    <h:outputText value="Firstname: *"/>
+                    <p:inputText required="true" label="Firstname"
+                                 value="#{employeeMB.employeeEntity.firstname}"/>
+
+                    <h:outputText value="Lastname: *"/>
+                    <p:inputText required="true" label="Lastname"
+                                 value="#{employeeMB.employeeEntity.lastname}"/>
+
+                    <h:outputText value="Position: *"/>
+                    <p:inputText required="true" label="Position"
+                                 value="#{employeeMB.employeeEntity.position}"/>
+
+                    <h:outputText value="Department: *"/>
+                    <p:selectOneMenu value="#{employeeMB.employeeEntity.departmentByDepartment.name}">
+                        <f:selectItem itemLabel="Select One"/>
+                        <f:selectItems value="#{employeeMB.departments}" var="department" itemLabel="#{department.name}"
+                                       itemValue="#{department.name}"/>
+                    </p:selectOneMenu>
+
+
+                </h:panelGrid>
+                <p:commandButton value="create" action="#{employeeMB.createEmployee()}" onclick="close()" ajax="false"/>
+            </p:panel>
+        </h:form>
+    </p:dialog>
+
+
+</ui:component>

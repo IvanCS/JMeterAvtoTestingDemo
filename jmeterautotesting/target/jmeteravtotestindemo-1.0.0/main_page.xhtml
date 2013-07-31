@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="jsf/templates/page_layout.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+
+    <ui:define name="north">
+        <div align="center" style="margin: auto">
+            <h:form>
+
+                <p:outputPanel>
+                    <p:graphicImage value="/resources/images/header.png"/>
+                </p:outputPanel>
+
+            </h:form>
+        </div>
+
+        <div align="center" style="margin-left:12%; margin-right: 12%; margin-bottom: 2px">
+            <h:form id="toolbar">
+                <p:toolbar>
+
+
+                    <p:toolbarGroup align="right" style="margin-right:  20px">
+                        <p:commandButton value="#{authorisationMB.login} | Logout" action="#{authorisationMB.logout()}"/>
+                    </p:toolbarGroup>
+
+                    <p:spacer width="20"/>
+
+                    <p:toolbarGroup align="left" style="margin-left:  20px">
+
+                        <p:commandButton value="Add new Employee" onclick="dlgCreateEmpl.show()"/>
+                    </p:toolbarGroup>
+                </p:toolbar>
+            </h:form>
+        </div>
+    </ui:define>
+
+
+    <ui:define name="center">
+
+        <div align="center" style="margin-left:12%; margin-right: 12%">
+            <h:form prependId="false">
+
+                <p:dataTable id="dataTable"  var="emploee" sortMode="multiple" paginator="true" rows="5" value="#{employeeMB.employees}">
+
+                    <f:facet name="header">
+                       Employees
+                    </f:facet>
+
+                    <p:column headerText="id" sortBy="#{emploee.id}">
+                        <h:outputText value="#{emploee.id}"/>
+                    </p:column>
+
+                    <p:column headerText="lastname" sortBy="#{emploee.lastname}">
+                        <h:outputText value="#{emploee.lastname}"/>
+                    </p:column>
+
+                    <p:column headerText="firsname" sortBy="#{emploee.firstname}">
+                        <h:outputText value="#{emploee.firstname}"/>
+                    </p:column>
+
+                    <p:column headerText="position" sortBy="#{emploee.position}">
+                        <h:outputText value="#{emploee.position}"/>
+                    </p:column>
+
+                    <p:column headerText="department" sortBy="#{emploee.departmentByDepartment.name}">
+                        <h:outputText value="#{emploee.departmentByDepartment.name}"/>
+                    </p:column>
+
+                </p:dataTable>
+
+
+            </h:form>
+        </div>
+    </ui:define>
+
+    <ui:define name="dialogs">
+        <ui:include src="/jsf/dialogs/dlgCreateemployee.xhtml"/>
+    </ui:define>
+</ui:composition>
+

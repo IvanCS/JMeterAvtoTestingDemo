@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../../resources/css/cssLayouts.css" rel="stylesheet" type="text/css" />
+</h:head>
+
+<h:body>
+
+    <style type="text/css">
+        .ui-layout, .ui-layout-doc, .ui-layout-unit, .ui-layout-wrap, .ui-layout-bd, .ui-layout-hd {
+            border: none
+        }
+    </style>
+
+    <p:growl id="growCreateUser" sticky="true" showDetail="true" autoUpdate="false"/>
+
+    <div id="top" align="center">
+            <ui:insert name="north">
+                <h:form>
+
+                        <p:outputPanel>
+
+                            <p:graphicImage value="/resources/images/header.png"/>
+
+                        </p:outputPanel>
+
+                </h:form>
+            </ui:insert>
+    </div>
+
+       <div id="content" class="center_content">
+
+
+
+            <ui:insert name="center">
+
+            </ui:insert>
+       </div>
+
+       <div id="bottom" >
+
+
+            <ui:insert name="south">
+                <div align="left" style="margin-left:12%; margin-right: 12%">
+                    <p:panel header="Automatizatoin of Functional Testing by using the JMeter"/>
+                </div>
+            </ui:insert>
+       </div>
+
+
+
+    <ui:insert name="dialogs">
+
+
+
+    </ui:insert>
+
+
+
+</h:body>
+</html>
