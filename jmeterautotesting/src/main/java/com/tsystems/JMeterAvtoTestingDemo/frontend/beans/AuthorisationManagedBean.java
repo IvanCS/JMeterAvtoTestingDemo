@@ -45,7 +45,7 @@ public class AuthorisationManagedBean implements Serializable {
             boolean isSigned = false;
             isSigned = getUserService().checkCredentials(getLogin(), getPassword());
             if (isSigned) {
-                context.getExternalContext().redirect("/jmeteravtotestindemo-1.0.0/main_page.jsf");
+                context.getExternalContext().redirect("/jmeter-autotesting-demo-1.0.0/main_page.jsf");
             } else {
                 throw new Exception("Authorization is failed!");
             }
