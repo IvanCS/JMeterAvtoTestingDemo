@@ -54,7 +54,7 @@ public class AuthorisationManagedBean implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
 
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Authorization error", "Invalid data");
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Authorization error!", " Invalid data. Please, check and try again!");
             context.addMessage(null, msg);
 
         }
